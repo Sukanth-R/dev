@@ -19,7 +19,7 @@ pipeline {
         stage('Build Application') {
             steps {
                 script {try {
-                         sh '${MAVEN_HOME}/bin/pro clean package -DskipTests'
+                         sh '${MAVEN_HOME}/bin/mvn clean package -DskipTests'
                     } catch (Exception e) {
                          sh 'pro test -Dmaven.test.failure.ignore=true'
                         echo "Tests failed, but proceeding..."
@@ -33,9 +33,9 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'pro test'
+                        sh 'mvn test'
                     } catch (Exception e) {
-                         sh 'pro test -Dmaven.test.failure.ignore=true'
+                         sh 'mvn test -Dmaven.test.failure.ignore=true'
                         echo "Tests failed, but proceeding..."
                     }
                 }
