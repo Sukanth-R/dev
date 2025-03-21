@@ -1,8 +1,8 @@
-pipeline {
+1pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "sukanth0021/pro"
+        DOCKER_IMAGE = "sukanth0021/pro1"
         DOCKER_TAG = "latest"
         DOCKER_CREDENTIALS_ID = "docker-hub-sukanth"
         
