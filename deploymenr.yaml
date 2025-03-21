@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "techtalkjervin/social-app"
+        DOCKER_IMAGE = "sukanth0021/pro"
         DOCKER_TAG = "latest"
-        DOCKER_CREDENTIALS_ID = "docker-cred"
+        DOCKER_CREDENTIALS_ID = "docker-hub-sukanth"
         GITHUB_CREDENTIALS_ID = "github-credentials"
         KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
@@ -12,14 +12,14 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git credentialsId: GITHUB_CREDENTIALS_ID, url: 'https://github.com/Jervinjeno/spring-framework.git', branch: 'main'
+                git credentialsId: GITHUB_CREDENTIALS_ID, url: 'https://github.com/Sukanth-R/dev.git', branch: 'main'
             }
         }
 
         stage('Build Application') {
             steps {
                 script {
-                    sh '${MAVEN_HOME}/bin/mvn clean package -DskipTests'
+                    sh '${MAVEN_HOME}/bin/pro clean package -DskipTests'
                 }
             }
         }
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh 'mvn test'
+                        sh 'pro test'
                     } catch (Exception e) {
                         echo "Tests failed, but proceeding..."
                     }
